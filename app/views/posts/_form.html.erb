@@ -1,0 +1,41 @@
+<%= cloudinary_js_config %>
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <hr />
+  <div class="field">
+    <%= f.label :post_picture %><br>
+    <%= f.attachinary_file_field :post_picture %>
+  </div>
+  <div class="field">
+    <%= f.label :photos %><br>
+    <%= f.attachinary_file_field :photos %>
+  </div>
+  <hr />
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $(function(){
+    $('.attachinary-input').attachinary();
+  });
+</script>

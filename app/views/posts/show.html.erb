@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<% if @post.post_picture? %>
+    <%= link_to cl_image_tag(@post.post_picture.path, { size: '200x200', crop: :thumb, gravity: :face }), cloudinary_url(@post.post_picture.path) %>
+<% end %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<% @post.photos.each do |photo| %>
+    <%= link_to cl_image_tag(photo.path, { size: '125x125', crop: :fit }), cloudinary_url(photo.path) %>
+<% end %>
+<hr />
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
